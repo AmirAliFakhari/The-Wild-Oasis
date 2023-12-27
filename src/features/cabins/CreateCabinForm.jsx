@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 
 import useCreateCabin from "./useCreateCabin";
 import useEditCabin from "./useEditCabin";
+import { useState } from "react";
 
 const FormRow = styled.div`
   display: grid;
@@ -46,7 +47,7 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, setIsModalOpen }) {
   const { id: editId, ...editeValue } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
@@ -78,6 +79,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: (data) => {
             reset();
+            setIsModalOpen?.();
           },
         }
       );
@@ -87,7 +89,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     console.log(error);
   }
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={setIsModalOpen ? "modal" : "regular"}
+    >
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
         <Input
@@ -163,7 +168,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => setIsModalOpen?.(false)}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>

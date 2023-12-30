@@ -37,15 +37,14 @@ function CabinTable() {
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
+
   if (isLoading) return <Spinner />;
-  if (error) {
-    throw new Error("There is an error");
-  }
+
   return (
     <Table role="table">
       <TableHeader role="row">
         <div></div>
-        <div>Cabins</div>
+        <div>Cabin</div>
         <div>Capacity</div>
         <div>Price</div>
         <div>Discount</div>
@@ -57,4 +56,5 @@ function CabinTable() {
     </Table>
   );
 }
+
 export default CabinTable;

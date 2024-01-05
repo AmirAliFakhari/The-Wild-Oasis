@@ -8,12 +8,7 @@ import Empty from "../../ui/Empty";
 
 function BookingTable() {
   // const { bookings, isLoading } = useBookings();
-  const { data } = useBookings();
-  // const bookings = [];
-  // const { bookings } = useBookings();
-
-  // if (isLoading) return <Spinner />;
-  // if (!bookings) return <Empty resource={"bookings"} />;
+  const { bookings } = useBookings();
 
   return (
     <Menus>
@@ -27,12 +22,12 @@ function BookingTable() {
           <div></div>
         </Table.Header>
         ّ
-        {/* <Table.Body
+        <Table.Body
           data={bookings}
           render={(booking) => (
             <BookingRow key={booking.id} booking={booking} />
           )}
-        /> */}
+        />
       </Table>
     </Menus>
   );

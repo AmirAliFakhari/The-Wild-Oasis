@@ -12,6 +12,7 @@ export default function useBooking() {
     } = useQuery({
         queryKey: ["bookings"],
         queryFn: () => getBooking(bookingId),
+        retry: false
     });
 
     return { isLoading, error, booking };

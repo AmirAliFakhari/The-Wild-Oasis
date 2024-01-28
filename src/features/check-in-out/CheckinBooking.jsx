@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { formatCurrency } from "../../utils/helpers";
 import useCheckin from "./useCheckin";
 import { useSettings } from "../settings/useSettings";
+import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Box = styled.div`
   /* Box */
@@ -35,7 +37,7 @@ function CheckinBooking() {
 
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking?.isPaid]);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isLoadingSettings) return <Spinner />;
 
   const {
     id: bookingId,
@@ -51,10 +53,24 @@ function CheckinBooking() {
 
   function handleCheckin() {
     if (!confirmPaied) return null;
-    else {
-      checkin(bookingId);
+
+    if (addBreackfast) {
+      checkin({
+        bookingId,
+        breakfast: {
+          hasBreakfast: true,
+          extrasPrice: optionalBreakfastPrice,
+          totalPrice: totalPrice + optionalBreakfastPrice,
+        },
+      });
+      // navigate("/");
+    } else {
+      checkin({ bookingId, breakfast: {} });
+
+      // navigate("/");
     }
   }
+
   return (
     <>
       <Row type="horizontal">
@@ -86,7 +102,13 @@ function CheckinBooking() {
           disabled={confirmPaied || isChecking}
         >
           i confirm that {guests.fullName} has paid the total amount{" "}
-          {formatCurrency(totalPrice)}
+          {!addBreackfast
+            ? formatCurrency(totalPrice)
+            : `${formatCurrency(
+                totalPrice + optionalBreakfastPrice
+              )} (${formatCurrency(totalPrice)} + ${formatCurrency(
+                optionalBreakfastPrice
+              )})`}
         </Checkbox>
       </Box>
 

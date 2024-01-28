@@ -10,6 +10,7 @@ import Modal from "../../ui/Modal";
 import Table from "../../ui/Table";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Menus from "../../ui/Menus";
+import useDeleteBooking from "../bookings/useDeleteBooking";
 
 // const TableRow = styled.div`
 //   display: grid;

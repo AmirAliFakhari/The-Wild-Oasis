@@ -14,6 +14,9 @@ import Spinner from "../../ui/Spinner";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import useCheckout from "../check-in-out/useCheckout";
+import useDeleteBooking from "./useDeleteBooking";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -23,9 +26,10 @@ const HeadingGroup = styled.div`
 
 function BookingDetail() {
   const { booking = {}, isLoading } = useBooking();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteEachBooking, isDeletingBooking } = useDeleteBooking();
   // const status = "checked-in";
   const { id: bookingId, status } = booking;
-  const { checkout, isCheckingOut } = useCheckout();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
@@ -34,7 +38,7 @@ function BookingDetail() {
     "checked-in": "green",
     "checked-out": "silver",
   };
-  if (isLoading || isCheckingOut) return <Spinner />;
+  if (isLoading || isCheckingOut || isDeletingBooking) return <Spinner />;
 
   return (
     <>
@@ -56,7 +60,33 @@ function BookingDetail() {
         {status === "checked-in" && (
           <Button onClick={() => checkout(bookingId)}>Check out</Button>
         )}
-        <Button variation="secondary" onClick={moveBack}>
+        <Modal>
+          <Modal.Open id="delete">
+            <Button variation="danger" onClick={moveBack}>
+              Delete
+            </Button>
+          </Modal.Open>
+          <Modal.Window id="delete">
+            <ConfirmDelete
+              disabled={isDeletingBooking}
+              onConfirm={() =>
+                deleteEachBooking(bookingId, {
+                  onSettled: () => navigate(-1),
+                })
+              }
+              // onCloseModal={() =>   }
+              resourceName={bookingId}
+              key={bookingId}
+            />
+          </Modal.Window>
+        </Modal>
+        <Button
+          variation="secondary"
+          onClick={() => {
+            deleteEachBooking(bookingId);
+            navigate("/");
+          }}
+        >
           Back
         </Button>
       </ButtonGroup>

@@ -8,11 +8,9 @@ import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import Menus from "../../ui/Menus";
 import { useNavigate } from "react-router-dom";
-import {
-  HiArrowDownOnSquare,
-  HiArrowDownOnSquareStack,
-  HiEye,
-} from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from "react-icons/hi2";
+import useCheckout from "../check-in-out/useCheckout";
+import Spinner from "../../ui/Spinner";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import { useDeleteBooking } from "./useDeleteBooking";
 
@@ -57,14 +55,14 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
-  // const { checkout, isCheckingOut } = useCheckout();
-  // const { deleteBooking, isDeleting } = useDeleteBooking();
   const navigate = useNavigate();
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
     "checked-out": "silver",
   };
+  const { checkout, isCheckingOut } = useCheckout();
+  if (isCheckingOut) return <Spinner />;
 
   return (
     <Table.Row>
@@ -106,6 +104,15 @@ function BookingRow({
               onClick={() => navigate(`/checkin/${bookingId}`)}
             >
               Check in
+            </Menus.Button>
+          )}
+          {status === "checked-in" && (
+            <Menus.Button
+              icon={<HiArrowUpOnSquare />}
+              onClick={() => checkout(bookingId)}
+              disabled={isCheckingOut}
+            >
+              Check out
             </Menus.Button>
           )}
         </Menus.List>

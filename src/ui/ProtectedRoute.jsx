@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import useUser from "../features/authentication/useUser";
 import Spinner from "./Spinner";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const FullPage = styled.div`
   height: 100vh;
@@ -11,7 +13,15 @@ const FullPage = styled.div`
 `;
 
 export default function ProtectedRoute({ children }) {
-  const { isLoading, user } = useUser();
+  const { isLoading, user, isAuthenticated } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(
+    function () {
+      if (!isAuthenticated && !isLoading) navigate("/login");
+    },
+    [isAuthenticated, isLoading, navigate]
+  );
 
   if (isLoading)
     return (

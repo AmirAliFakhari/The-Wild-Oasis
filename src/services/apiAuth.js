@@ -21,5 +21,5 @@ export async function getCurrentUser() {
 
     console.log(data)
     if (error) throw new Error(error.message)
-    return data
+    return data?.user
 }

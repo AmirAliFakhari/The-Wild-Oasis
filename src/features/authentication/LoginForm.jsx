@@ -23,8 +23,9 @@ function LoginForm() {
       { email, password },
       {
         onSettled: () => {
-          setEmail("");
-          setPassword("");
+          // i think it is better not to remove if the inputs are not correct!
+          // setEmail("");
+          // setPassword("");
         },
       }
     );

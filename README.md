@@ -4,7 +4,7 @@ Hey there! I've developed a web application for hotel management. It's designed 
 
 ## Running
 
-ّFor Running, just run the following command
+For Running, just run the following command
 
 ```bash
   npm run dev

@@ -14,7 +14,6 @@ export default function useLogout() {
             toast.success("Succesfully Loged out")
             queryClient.removeQueries()
             navigate("/login", { replace: true })
-            // queryClient.invalidateQueries({ queryKey: ["user"] })
         },
 
         onError: () => toast.error("nashod")

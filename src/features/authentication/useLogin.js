@@ -11,7 +11,7 @@ export default function useLogin() {
 
         onSuccess: (user) => {
             toast.success("You are Logged in Baby :)")
-            queryClient.setQueriesData(["user", user])
+            queryClient.setQueryData(["user"], user.user)
             navigate("/dashboard", { replace: true })
             // console.log(user)
         },

@@ -3,14 +3,23 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
+import SpinnerMini from "../../ui/SpinnerMini";
+import useSignup from "./useSignUp";
 
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
-  const { formState, register, getValues, handleSubmit } = useForm();
+  const { formState, register, getValues, handleSubmit, reset } = useForm();
+  const { isLoadingSignUp, signup } = useSignup();
   const { errors } = formState;
-  function onSubmit(data) {
-    console.log(data, errors);
+  function onSubmit({ fullName, password, email }) {
+    // console.log(data, errors);
+    signup(
+      { password, email, fullName },
+      {
+        onSettled: reset(),
+      }
+    );
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -18,6 +27,7 @@ function SignupForm() {
         <Input
           type="text"
           id="fullName"
+          disabled={isLoadingSignUp}
           {...register("fullName", { required: "This field is required" })}
         />
       </FormRow>
@@ -26,6 +36,7 @@ function SignupForm() {
         <Input
           type="email"
           id="email"
+          disabled={isLoadingSignUp}
           {...register("email", {
             required: "This field is required",
             pattern: {
@@ -43,6 +54,7 @@ function SignupForm() {
         <Input
           type="password"
           id="password"
+          disabled={isLoadingSignUp}
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -57,6 +69,8 @@ function SignupForm() {
         <Input
           type="password"
           id="passwordConfirm"
+          disabled={isLoadingSignUp}
+          ب
           {...register("passwordConfirm", {
             required: "This field is required",
             validate: (value) =>
@@ -70,7 +84,7 @@ function SignupForm() {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Create new user</Button>
+        {!isLoadingSignUp ? <Button>Create new user</Button> : <SpinnerMini />}
       </FormRow>
     </Form>
   );

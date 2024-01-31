@@ -6,7 +6,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 
 export default function Logout() {
   const { isLogoutLoading, logoutUser } = useLogout();
-  console.log(isLogoutLoading);
+  // console.log(isLogoutLoading);
 
   return (
     <>

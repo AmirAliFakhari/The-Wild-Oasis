@@ -9,7 +9,7 @@ function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
   const { errors } = formState;
 
-  const { mutate: updateUser, isLoading: isUpdating } = useUpdateUser();
+  const { updateUser, isUpdating } = useUpdateUser();
 
   function onSubmit({ password }) {
     updateUser({ password }, { onSuccess: () => reset() });

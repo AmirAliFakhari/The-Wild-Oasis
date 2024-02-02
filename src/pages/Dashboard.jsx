@@ -7,11 +7,9 @@ import Row from "../ui/Row";
 import Spinner from "../ui/Spinner";
 
 function Dashboard() {
-  const { bookings, isPending: isPending1 } = useRecentBookings();
-  const { confirmedStaus, isPending: isPending2, stays } = useRecentStays();
-  console.log(bookings);
-
-  if (isPending1 || isPending2) return <Spinner />;
+  const { isPending: isPending1 } = useRecentBookings();
+  const { isPending: isPending2 } = useRecentStays();
+  // console.log(bookings);
 
   return (
     <>
@@ -19,7 +17,7 @@ function Dashboard() {
         <Heading as="h1">Dashboard</Heading>
         <DashboardFilter />
       </Row>
-      <DashboardLayout />
+      {!isPending1 || !isPending2 ? <DashboardLayout /> : <Spinner />}
     </>
   );
 }

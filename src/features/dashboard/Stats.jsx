@@ -18,12 +18,6 @@ export default function Stats({
   const sales = bookings?.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
   const checkins = confirmedStays?.length;
-  //   console.log(
-  //     numDays,
-  //     cabinCount,
-  //     confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0),
-  //     confirmedStays
-  //   );
 
   const occupancy =
     confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /

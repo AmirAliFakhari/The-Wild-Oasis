@@ -30,8 +30,8 @@ export default function SalesChart({ numDays, bookings }) {
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
   });
-  // console.log(allDates);
-  const data = allDates?.map((date) => {
+
+  const data = allDates.map((date) => {
     return {
       label: format(date, "MMM dd"),
       totalSales: bookings
@@ -43,7 +43,7 @@ export default function SalesChart({ numDays, bookings }) {
     };
   });
 
-  console.log(data);
+  // console.log(data );
 
   const colors = isDarkMode
     ? {
@@ -61,7 +61,10 @@ export default function SalesChart({ numDays, bookings }) {
 
   return (
     <StyledSalesChart>
-      <Heading as="h2">Sales</Heading>
+      <Heading as="h2">
+        Sales from {format(allDates.at(0), "MMMM dd yyyy")} &mdash;{" "}
+        {format(allDates.at(-1), "MMMM dd yyyy")}
+      </Heading>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
           <XAxis
@@ -76,13 +79,8 @@ export default function SalesChart({ numDays, bookings }) {
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
           />
-          <Tooltip
-            contentStyle={{ backgroundColor: colors.background }}
-            // animationDuration={100}
-            // animationEasing="eas"
-          />
+          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
           <CartesianGrid strokeDasharray="4" />
-          {/* <Text color={colors.text} /> */}
           <Area
             dataKey="totalSales"
             type="monotone"

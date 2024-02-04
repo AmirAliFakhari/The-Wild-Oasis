@@ -15,12 +15,7 @@ const StyledDashboardLayout = styled.div`
 
 export default function DashboardLayout() {
   const { bookings, isPending: isPending1 } = useRecentBookings();
-  const {
-    confirmedStaus,
-    isPending: isPending2,
-    stays,
-    numDays,
-  } = useRecentStays();
+  const { confirmedStaus, isPending: isPending2, numDays } = useRecentStays();
   const { cabins, isLoading } = useCabins();
 
   if (isPending1 || isPending2 || isLoading) return <Spinner />;

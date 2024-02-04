@@ -12,6 +12,6 @@ For Running, just run the following command
 
 ## Tech Stack
 
-**Client:** React, React Router,React Query ,StyledComponent, React Hook Form and .....
+**Client:** React, React Router,React Query ,StyledComponent, React Hook Form and Recharts .....
 
 **Server:** Supabase

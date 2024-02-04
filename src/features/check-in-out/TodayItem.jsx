@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Tag from "../../ui/Tag";
 import { Flag } from "../../ui/Flag";
-import { getHours } from "date-fns";
 import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
+import CheckoutButton from "./CheckoutButton";
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -38,7 +38,7 @@ export default function TodayItem({ activity }) {
       <div>{numNights} nights</div>
       {status === "unconfirmed" ? (
         <Button
-          type="small"
+          size="small"
           variation="primary"
           as={Link}
           to={`/checkin/${id}`}
@@ -46,7 +46,7 @@ export default function TodayItem({ activity }) {
           Check in
         </Button>
       ) : (
-        <Button>salam</Button> //complete this ziba
+        <CheckoutButton bookingId={id}></CheckoutButton> //complete this ziba va login ri set kon difaultesh ro
       )}
     </StyledTodayItem>
   );

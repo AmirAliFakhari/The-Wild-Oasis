@@ -5,13 +5,11 @@ import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
 // import { login } from "../../services/apiAuth";
 import useLogin from "./useLogin";
-import Spinner from "../../ui/Spinner";
 import SpinnerMini from "../../ui/SpinnerMini";
-import BookingTable from "../bookings/BookingTable";
 
 function LoginForm() {
-  const [email, setEmail] = useState("aafz1382@gmail.com");
-  const [password, setPassword] = useState("32253577");
+  const [email, setEmail] = useState("kekidet496@evvgo.com");
+  const [password, setPassword] = useState("123456789");
   const { isLoadingLogin, login } = useLogin();
 
   // if (isLoadingLogin) return <Spinner />;

@@ -146,9 +146,10 @@ export default function DurationChart({ confirmedStays }) {
   const { isDarkMode } = useDarkMode();
   const startData = isDarkMode ? startDataDark : startDataLight;
   const data = prepareData(startData, confirmedStays);
+  // console.log(confirmedStays);
   return (
     <ChartBox>
-      <Heading>salam</Heading>
+      <Heading as="h3">stay duration summary</Heading>
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie

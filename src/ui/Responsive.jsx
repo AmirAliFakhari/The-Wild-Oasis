@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import Logo from "./Logo";
 import Button from "./Button";
-import { Link } from "react-router-dom";
 
 const Resposive = styled.div`
   @media screen and (max-width: 930px) {
@@ -24,6 +23,9 @@ const NotResponsive = styled.div`
     /* max-height: 100vh; */
   }
 
+  @media screen and (min-width: 931px) {
+    display: none !important  ;
+  }
   & span {
     font-weight: bold;
   }

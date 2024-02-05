@@ -29,5 +29,5 @@ export default function ProtectedRoute({ children }) {
         <Spinner />
       </FullPage>
     );
-  return children;
+  if (isAuthenticated) return children;
 }

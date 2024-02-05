@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useUser from "./useUser";
-import Spinner from "../../ui/Spinner";
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -23,16 +22,16 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
-  const { user, isLoading } = useUser();
-  if (isLoading) return <Spinner />;
+  const { user } = useUser();
   const { fullName, avatar } = user?.user_metadata;
+
   return (
     <StyledUserAvatar>
-      <span>{fullName}</span>
       <Avatar
         src={avatar || "default-user.jpg"}
         alt={`Avatar of ${fullName}`}
       />
+      <span>{fullName}</span>
     </StyledUserAvatar>
   );
 }

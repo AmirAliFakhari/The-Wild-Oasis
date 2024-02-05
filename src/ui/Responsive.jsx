@@ -9,6 +9,7 @@ const Resposive = styled.div`
 const NotResponsive = styled.p`
   @media screen and (max-width: 930px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -18,6 +19,10 @@ const NotResponsive = styled.p`
     height: 100vh;
     /* max-height: 100vh; */
   }
+
+  & span {
+    font-weight: bold;
+  }
 `;
 
 export default function Responsive({ children }) {
@@ -25,8 +30,8 @@ export default function Responsive({ children }) {
     <>
       <Resposive>{children}</Resposive>
       <NotResponsive>
-        The Mobile Design is not still Responsive ! You can Check the App with
-        Dekstop Mode 😁
+        The Mobile Design is not still Responsive ! You can Check the App on
+        <span> Dekstop Mode 😁</span>
       </NotResponsive>
     </>
   );

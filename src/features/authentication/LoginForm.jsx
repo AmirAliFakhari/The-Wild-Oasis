@@ -5,6 +5,7 @@ import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
+import Responsive from "../../ui/Responsive";
 
 function LoginForm() {
   const [email, setEmail] = useState("kekidet496@evvgo.com");

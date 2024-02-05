@@ -5,12 +5,15 @@ import useBookings from "../../features/bookings/useBookings";
 import Menus from "../../ui/Menus";
 import Pagination from "../../ui/Pagination";
 import Spinner from "../../ui/Spinner";
+import Empty from "../../ui/Empty";
 
 function BookingTable() {
   // const { bookings, isLoading } = useBookings();
   const { bookings, count, isLoading } = useBookings();
-  // console.log(bookings);
   if (isLoading) return <Spinner />;
+  // if (bookings === undefined) return <Empty resource="booking" />;
+
+  // console.log(bookings);
 
   return (
     <Menus>

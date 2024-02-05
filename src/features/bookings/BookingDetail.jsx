@@ -87,7 +87,7 @@ function BookingDetail() {
           variation="secondary"
           onClick={() => {
             // deleteEachBooking(bookingId);
-            navigate("/");
+            navigate("/bookings");
           }}
         >
           Back

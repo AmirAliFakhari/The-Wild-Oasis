@@ -13,17 +13,17 @@ const FullPage = styled.div`
 `;
 
 export default function ProtectedRoute({ children }) {
-  const { isPending, user, isAuthenticated } = useUser();
+  const { isLoading, isAuthenticated } = useUser();
   const navigate = useNavigate();
 
   useEffect(
     function () {
-      if (!isAuthenticated && !isPending) navigate("/login");
+      if (!isAuthenticated && !isLoading) navigate("/login");
     },
-    [isAuthenticated, isPending, navigate]
+    [isAuthenticated, isLoading, navigate]
   );
 
-  if (isPending)
+  if (isLoading)
     return (
       <FullPage>
         <Spinner />

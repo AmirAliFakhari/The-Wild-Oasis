@@ -17,6 +17,7 @@ import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { DarkModeProvider } from "./context/DarkModeContext";
+import Responsive from "./ui/Responsive";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,9 +39,11 @@ function App() {
           <Routes>
             <Route
               element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
+                <Responsive>
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                </Responsive>
               }
             >
               <Route index element={<Navigate replace to="dashboard" />} />

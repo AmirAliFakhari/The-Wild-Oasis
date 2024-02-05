@@ -3,7 +3,7 @@ import { useUser } from "../features/authentication/useUser";
 import Spinner from "./Spinner";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { isLastDayOfMonth } from "date-fns";
+// import { isLastDayOfMonth } from "date-fns";
 
 const FullPage = styled.div`
   height: 100vh;
@@ -14,7 +14,7 @@ const FullPage = styled.div`
 `;
 
 export default function ProtectedRoute({ children }) {
-  const { isLoading, user, isAuthenticated } = useUser();
+  const { isLoading, isAuthenticated } = useUser();
   const navigate = useNavigate();
 
   useEffect(

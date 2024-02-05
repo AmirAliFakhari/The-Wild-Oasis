@@ -30,8 +30,8 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <Responsive>
-      <DarkModeProvider>
+    <DarkModeProvider>
+      <Responsive>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
 
@@ -84,8 +84,8 @@ function App() {
             }}
           />
         </QueryClientProvider>
-      </DarkModeProvider>
-    </Responsive>
+      </Responsive>
+    </DarkModeProvider>
   );
 }
 

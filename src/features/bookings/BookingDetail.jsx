@@ -86,7 +86,7 @@ function BookingDetail() {
         <Button
           variation="secondary"
           onClick={() => {
-            deleteEachBooking(bookingId);
+            // deleteEachBooking(bookingId);
             navigate("/");
           }}
         >

@@ -23,8 +23,8 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
-  const { user, isPending } = useUser();
-  if (isPending) return <Spinner />;
+  const { user, isLoading } = useUser();
+  if (isLoading) return <Spinner />;
   const { fullName, avatar } = user?.user_metadata;
   return (
     <StyledUserAvatar>
